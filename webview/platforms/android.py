@@ -19,6 +19,7 @@ AndroidString = autoclass('java.lang.String')
 CookieManager = autoclass('android.webkit.CookieManager')
 WebViewA = autoclass('android.webkit.WebView')
 KeyEvent = autoclass('android.view.KeyEvent')
+WebSettings = autoclass('android.webkit.WebSettings')
 PyWebViewClient = autoclass('com.pywebview.PyWebViewClient')
 PyWebChromeClient = autoclass('com.pywebview.PyWebChromeClient')
 PyJavaScriptInterface = autoclass('com.pywebview.PyJavascriptInterface')
@@ -28,6 +29,7 @@ Environment = autoclass('android.os.Environment')
 DownloadManager = autoclass('android.app.DownloadManager')
 DownloadManagerRequest = autoclass('android.app.DownloadManager$Request')
 Uri = autoclass('android.net.Uri')
+View = autoclass('android.view.View')
 Context = autoclass('android.content.Context')
 
 
@@ -147,6 +149,10 @@ class BrowserView(Widget):
         webview_settings.setSupportZoom(self.window.zoomable)
         webview_settings.setBuiltInZoomControls(False)
         webview_settings.setDomStorageEnabled(not _state['private_mode'])
+        self.webview.setLayerType(View.LAYER_TYPE_HARDWARE, None)
+        webview_settings.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK)
+        webview_settings.setAppCacheEnabled(True)
+        webview_settings.setDatabaseEnabled(True)
 
         if _state['user_agent']:
             webview_settings.setUserAgentString(_state['user_agent'])
