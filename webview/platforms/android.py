@@ -139,6 +139,7 @@ class BrowserView(Widget):
 
         self._cookies = {}
         self.webview = WebViewA(activity)
+        self.webview.setLayerType(2)
         webview_settings = self.webview.getSettings()
         webview_settings.setAllowFileAccessFromFileURLs(True)
         webview_settings.setJavaScriptEnabled(True)
