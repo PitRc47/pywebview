@@ -7,7 +7,7 @@ from urllib.parse import urlparse
 from kivy.app import App
 from kivy.uix.widget import Widget
 from kivy.clock import Clock
-
+from jnius import cast
 from jnius import autoclass, cast, java_method, PythonJavaClass
 from android.runnable import Runnable, run_on_ui_thread
 
@@ -139,7 +139,7 @@ class BrowserView(Widget):
 
         self._cookies = {}
         self.webview = WebViewA(activity)
-        self.webview.setLayerType(2)
+        self.webview.setLayerType(2, None)
         webview_settings = self.webview.getSettings()
         webview_settings.setAllowFileAccessFromFileURLs(True)
         webview_settings.setJavaScriptEnabled(True)
